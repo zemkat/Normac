@@ -1,0 +1,3 @@
+* Line ending detector: assuming dos line endings throughout
+* Handling mnemonic from different places
+* MARCXML
