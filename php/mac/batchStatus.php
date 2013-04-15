@@ -45,12 +45,12 @@ while( $result and null !== ($row = $result->fetch_row() ) ) { $badones = $row[0
 
 // Display status
 
-printf( "<h2>%s: %.0f%% done, %.2f%% bad</h2>", $batch_name, 1-$queued/$total, $badones/$total );
+printf( "<h2>%s: %.0f%% done, %.2f%% bad</h2>", $batch_name, 100*(1-$queued/$total), 100*$badones/$total );
 
 // Allow displaying the bad URLs (or top 20)
 // Allow downloading the MARC records with the good urls? How do we find those marc records?
 
-require_once "../norphp/MARC21.php";
+require_once "../lib/MARC21.php";
 
 $result = Db::$SelectLinksByBatchIdSQL->execute($batch_id);
 $marc = new MARC21Record();
