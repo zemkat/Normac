@@ -60,6 +60,10 @@ class MARC21Record extends ISO2709Record {
 		if( $a0 === $b0 and $a0 === "00" ) return strcmp( $a0, $b0 );
 		$a0 = substr( $a, 0, 1 );
 		$b0 = substr( $b, 0, 1 );
+		if( $a0 === "0" and $b0 === "0" ) {
+			if( $a === "049" ) return 1;
+			if( $b === "049" ) return -1;
+		}
 		return strcmp( $a0, $b0 );
 	}
 

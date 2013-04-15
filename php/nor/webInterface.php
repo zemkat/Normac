@@ -75,7 +75,7 @@ function displayError() {
 
 <form method="POST" action="" enctype="multipart/form-data">
 <div id="input">
-<fieldset><legend>MARC file in Mnemonic format</legend>
+<fieldset><legend>MARC file</legend>
 <div id="file">
 <input name="marc" type="file" class="ui-statedefault" />
 <input type="submit" value="Normalize" class="ui-state-default"/>
@@ -92,7 +92,7 @@ function displayError() {
 </td>
 <td>
 <ul id="inactive" class="sortable"><?php 
-	$profile_dir = "../profiles";
+	$profile_dir = "profiles";
 	foreach( scandir( $profile_dir ) as $file ) {
 		$path = $profile_dir . $file;
 		if(is_dir($path)) continue;
@@ -113,7 +113,7 @@ function displayError() {
 }
 
 require_once "vendor.php";
-require_once "../MARC21.php";
+require_once "../lib/MARC21.php";
 
 if(isset($_FILES['marc']) && isset( $_REQUEST['vendor']) ) {
 

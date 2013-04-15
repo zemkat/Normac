@@ -3,6 +3,8 @@ Normac
 
 Normac is a system for normalization and access checking of MARC records.  It includes an object-oriented MARC library in PHP.
 
+Documentation and Install instructions coming soon!
+
 Files:
 
 * `php/nor` -- normalizer

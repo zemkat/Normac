@@ -1,0 +1,49 @@
+
+DROP TABLE IF EXISTS batches;
+CREATE TABLE IF NOT EXISTS batches (
+	batch_id	INT AUTO_INCREMENT,
+	batch_name	TEXT,
+	platform_id	INT,
+	batch_start	TIMESTAMP NOT NULL,
+	PRIMARY KEY(batch_id)
+);
+
+DROP TABLE IF EXISTS platforms;
+CREATE TABLE IF NOT EXISTS platforms (
+	platform_id	INT AUTO_INCREMENT,
+	platform_name	TEXT,
+	short_name	varchar(255),	-- will determine php file
+	PRIMARY KEY( platform_id)
+);
+
+DROP TABLE IF EXISTS links;
+CREATE TABLE IF NOT EXISTS links (
+	url		VARCHAR(2048), -- 856 $u
+	checked		INT(1) DEFAULT 0,
+	checkdate	TIMESTAMP NOT NULL,
+	error_code	INT,		-- 0 means good, numbers mean otherwise
+	PRIMARY KEY(url(255)),
+	INDEX(checked, error_code)
+);
+
+DROP TABLE IF EXISTS marc_records;
+CREATE TABLE IF NOT EXISTS marc_records (
+	marc_id		INT AUTO_INCREMENT,
+	bib_id		VARCHAR(2048), -- 001
+	title		VARCHAR(2048), -- 245 $a
+	marc		BLOB,
+	INDEX(bib_id(20)),
+	PRIMARY KEY(marc_id)
+);
+
+DROP TABLE IF EXISTS batch_link;
+CREATE TABLE IF NOT EXISTS batch_link (
+	batch_id	INT,
+	url		VARCHAR(2048),
+	marc_id		INT,
+	INDEX( batch_id, url(255), marc_id ),
+	INDEX( url(255), batch_id, marc_id )
+);
+
+INSERT INTO platforms(platform_name,short_name) VALUES ('Knovel EBook','knovel'),('Wiley EBook series','wiley');
+

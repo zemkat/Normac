@@ -436,13 +436,17 @@ class ISO2709Record {
 			} else {
 				for( $i = $numTags - 1 ; $i >= 0 ; $i-- ) {
 					$lastTag = $this->fields[ $i ]->tag;
-					if( $this->tagOrder( $lastTag, $field->tag ) <= 0 ) break;
+					if( $this->tagOrder( $lastTag, $field->tag ) <= 0 ) {
+						#print "Append {$field->tag} after $lastTag \n";
+						break;
+					}
+					#print "Do not {$field->tag} after $lastTag \n";
 				}
 				$appendAfter = $i;
 			}
 		} else { $appendAfter = -1; }
 
-		array_splice( $this->fields, $appendAfter, 0, array( $field ) );
+		array_splice( $this->fields, $appendAfter+1, 0, array( $field ) );
 	}
 
 	function removeField( $field ) {
